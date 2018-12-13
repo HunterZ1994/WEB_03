@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#chessboard { 
+  padding: 0px; 
+  margin: 0 auto; 
+  border: 2px solid blue; 
+}
+
+#chessboard tr td { 
+  width: 60px; 
+  height: 60px; 
+}
+
+#chessboard tr:nth-child(2n) td:nth-child(2n+1) { 
+  background:pink ; 
+}
+
+#chessboard tr:nth-child(2n+1) td:nth-child(2n) { 
+  background: pink; 
+} 
