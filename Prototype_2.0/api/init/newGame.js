@@ -36,6 +36,7 @@ function render(req, res, gameID, insertion){
             var result = String(data).replace("~", insertion+ gameID);
             res.write(result);
         }
+        res.end();
     });
 }
 module.exports = router;
