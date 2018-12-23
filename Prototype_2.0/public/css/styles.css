@@ -1,0 +1,38 @@
+body {
+    background-color: darkslategrey;
+    color: white;
+}
+
+h1 {
+    color: white;
+    font-size: 18px;
+    font-family: 
+}
+
+input[type=button], input[type=submit], input[type=reset], input[type=hidden] {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 4px;
+  cursor: pointer;
+  float: left;
+}
+
+input[type=text] {
+    background: black;
+    padding: 10px 20px;
+    color: white;
+    margin: 4px;
+    width: 20px;
+    float: left;
+}
+
+input[type="submit"]:hover {
+    background-color: darkred;
+    color: white;
+    float: left;
+}
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/styles.css">
+        <title>Startseite</title>
+        <script>
+            function setID(){
+                var id = document.getElementById("ID").value;
+                console.log(id);
+                document.getElementById("hiddenID").value = id;
+                document.getElementById("newGameId").value = id;
+            }
+        </script>
+    </head>
+    <body>
+        <img src="/pictures/chess-header.jpg" alt="Page-header">
+        <h1>Bitte die ID fuer das Spiel eingeben:</h1>
+
+        <input maxlength="3" type="text" value="5" name="SpieleID" id="ID" onchange="setID()">
+
+        <form action="/newGame" method="GET">
+            <input type="hidden" id="newGameId" name="newGameId">
+            <input type="submit" value="new game">
+        </form>
+        <form action="/loadGame" method="GET">
+            <input type="hidden" id="loadGameId" name="loadGameId">
+            <input type="submit" value="load game">
+        </form>
+        <form action="test" method=GET>
+            <!-- <label id="testlable"></label> -->
+            <input type="hidden" name="hiddenID" id="hiddenID">
+            <input type="submit" value="test">
+        </form>
+    </body>
+</html>
