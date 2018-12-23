@@ -7,7 +7,6 @@ const path = require('path');
 //routing constants
 const init = require("./api/init/index");
 const newGame = require("./api/init/newGame");
-const test = require("./test");
 
 //logging
 app.use(morgan('common', {stream: fs.createWriteStream('./requests.log', {flags: 'a'})}));
@@ -15,9 +14,8 @@ app.use(morgan('common', {stream: fs.createWriteStream('./requests.log', {flags:
 //Request routing
 app.use("/", init);
 app.use("/newGame", newGame)
-app.use("/test",test);
 
-//static CSS files
+//static CSS and picture files
 app.use(express.static(path.join(__dirname, '/public')));
 
 //Error handeling

@@ -3,12 +3,6 @@ body {
     color: white;
 }
 
-h1 {
-    color: white;
-    font-size: 18px;
-    font-family: 
-}
-
 input[type=button], input[type=submit], input[type=reset], input[type=hidden] {
   background-color: red;
   border: none;
@@ -26,7 +20,7 @@ input[type=text] {
     padding: 10px 20px;
     color: white;
     margin: 4px;
-    width: 20px;
+    width: 15px;
     float: left;
 }
 
@@ -36,3 +30,17 @@ input[type="submit"]:hover {
     float: left;
 }
 
+#text {
+  position: absolute;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  left: 20px;
+  top: 5px;
+}
+
+#container {
+  height: 300px;
+  width: 1024px;
+  position: relative;
+}
