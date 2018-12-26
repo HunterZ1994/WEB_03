@@ -9,9 +9,13 @@ app.use(morgan('common', {stream: fs.createWriteStream('./requests.log', {flags:
 
 //Routing handler
 const init = require("./api/init");
+const newGame = require("./api/Game");
+
 
 //Routing Requests
+app.use(express.static("./public/img/"));
 app.use("/", init);
+app.use("/neuesSpiel", newGame);
 
 //Exports
 module.exports = app;

@@ -5,10 +5,10 @@ const fs = require("fs");
 router.get("/", (req, res)=>{
     fs.readFile("./html/index.html", (error, data)=>{
         if(error){
-            res.writeHead(400);
-            res.write(String(error));
+            res.writeHead(404);
+            res.send("File not found");
         }else{
-            res.writeHead(200, {"content-Type":"text/html"});
+            res.writeHead(200, {"Content-Type":"text/html"});
             res.write(data);
         }
         res.end();
