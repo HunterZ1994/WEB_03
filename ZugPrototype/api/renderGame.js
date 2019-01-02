@@ -59,7 +59,6 @@ router.get("/", (req, res) => {
 
     )
 })
-
 function getFigurenListe(xmlString) {
     var xml = new xmlDom().parseFromString(String(xmlString));
     var properties = xml.getElementsByTagName("propertiesarray")[0].childNodes;

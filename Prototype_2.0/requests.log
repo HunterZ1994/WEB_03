@@ -804,3 +804,12 @@
 ::1 - - [26/Dec/2018:20:11:34 +0000] "GET /css/styles.css HTTP/1.1" 304 -
 ::1 - - [26/Dec/2018:20:11:34 +0000] "GET /pictures/chess-header.jpg HTTP/1.1" 304 -
 ::1 - - [26/Dec/2018:20:11:43 +0000] "GET /pictures/chess-header.jpg HTTP/1.1" 304 -
+::1 - - [02/Jan/2019:16:38:47 +0000] "GET / HTTP/1.1" 200 -
+::1 - - [02/Jan/2019:16:38:47 +0000] "GET /css/styles.css HTTP/1.1" 200 745
+::1 - - [02/Jan/2019:16:38:47 +0000] "GET /pictures/chess-header.jpg HTTP/1.1" 200 61877
+::1 - - [02/Jan/2019:16:38:47 +0000] "GET /favicon.ico HTTP/1.1" 404 41
+::1 - - [02/Jan/2019:16:38:50 +0000] "GET /newGame?newGameId=5 HTTP/1.1" 200 -
+::1 - - [02/Jan/2019:16:38:50 +0000] "GET /css/styles.css HTTP/1.1" 304 -
+::1 - - [02/Jan/2019:16:39:20 +0000] "GET /? HTTP/1.1" 200 -
+::1 - - [02/Jan/2019:16:39:20 +0000] "GET /css/styles.css HTTP/1.1" 304 -
+::1 - - [02/Jan/2019:16:39:20 +0000] "GET /pictures/chess-header.jpg HTTP/1.1" 304 -
