@@ -141,13 +141,19 @@
         <input type="submit" value="ziehe">
     </form>
 
-    <form action ="/getZugHistorie" method = "GET">
+    <form action ="/render" method = "GET">
+        <input type="hidden" value="true" name="zugHistorie" id="zugHistorie">
           <input type="submit" value = "Zughistorie anzeigen">
         </form>
     
     <form action="/speichernSpiel" method="GET">
         <input type="submit" value="Spiel speichern">
     </form>
+
+    
+    <div id="zugHistorie">
+            <h3>Zug Historie</h3>
+    </div>
     
 </body>
 

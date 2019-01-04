@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
     var nach = req.query.nach;
     //baut die URL zusammen, die abgeschickt werden soll
     requestURL =  zieheURL + process.env.gameID + "/" + von + "/" + nach;
-    console.log("requestURL: " + requestURL);
     request(requestURL, (error, response, body) => {
         if (error) {
             res.writeHead(200);

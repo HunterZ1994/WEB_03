@@ -15,7 +15,9 @@ const runningGame = require("./api/renderGame");
 const turn = require("./api/ziehe");
 const loadGame = require("./api/ladeSpiel");
 const save = require("./api/saveGame");
-const turnHistory = require("./api/getZugHistorie");
+const zugHistorie = require("./api/who");
+// const turnHistory = require("./api/getZugHistorie");
+
 
 
 //Routing Requests
@@ -27,7 +29,8 @@ app.use("/laden", loadGame);
 app.use("/render", runningGame);
 app.use("/ziehe", turn);
 app.use("/speichernSpiel", save);
-app.use("/getZugHistorie", turnHistory);
+app.use("/historie", zugHistorie);
+// app.use("/getZugHistorie", turnHistory);
 
 //Exports
 module.exports = app;

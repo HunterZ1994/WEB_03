@@ -7,7 +7,6 @@ const saveURL = "http://www.game-engineering.de:8080/rest/schach/spiel/admin/spe
 
 router.get("/", (req, res) => {
     requestURL =  saveURL + process.env.gameID;
-    console.log(requestURL + "requestURL");
     request(requestURL, (error, response, body) => {
         if (error) {
             res.writeHead(200);

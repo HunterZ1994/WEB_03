@@ -14,9 +14,7 @@ router.get("/", (req, res) => {
     if(!process.env.gameID || process.env.gameID == undefined){
     process.env.gameID = req.query.neuesSpielID;
     }
-    console.log(process.env.gameID);
     requestURL = newGameURL + process.env.gameID;
-    console.log("new game url: "+requestURL);
     request(requestURL, (error, response, body) => {
         if (error) {
             res.writeHead(200);

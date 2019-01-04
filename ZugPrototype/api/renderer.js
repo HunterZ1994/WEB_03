@@ -12,7 +12,8 @@ module.exports = {
     renderPureHTML,
     renderPageWithBelegung,
     renderMarked,
-    renderFailure
+    renderFailure,
+    addZugHistorie
 }
 
 function renderPureHTML() {
@@ -39,7 +40,6 @@ function getAssociatedFigure(JSONString) {
     var json = JSON.parse(JSONString);
     var figur = JSON.stringify(json.type).replace("\\r\"", "").replace("\"", "");
     var weiss = JSON.stringify(json.weiss).replace("\\r\"", "").replace("\"", "");
-    // console.log("Get associatet Figur: "+String(weiss)); 
     var file = "./img/";
     file += figur.charAt(0);
     file += "_";
@@ -56,9 +56,6 @@ function renderMarked(jsonString, position) {
     var dom = new JSDOM(gameData);
     if (position) {
         var json = JSON.parse(position);
-        // console.log("JSON as String: " + JSON.stringify(position));
-        // console.log("Json as raw String: " + String(position));
-        console.log("length: " + json.length);
         if (json.length > 1) {
             for (var i = 0; i < json.length; i++) {
                 var endposition = JSON.stringify(json[i].endposition).replace("\"", "").replace("\\r\"", "");
@@ -78,5 +75,26 @@ function renderFailure(JSONString, alertMessage) {
     var data = renderPageWithBelegung(JSONString);
     var dom = new JSDOM(data);
     dom.window.document.head.insertAdjacentHTML("beforeend", "<script>alert('" + alertMessage + "')</script>");
+    return dom.serialize();
+}
+
+function addZugHistorie(JSONString, position, zugHistorie) {
+    var gameData = renderMarked(JSONString, position);
+    var dom = new JSDOM(gameData);
+    if (zugHistorie) {
+        var json = JSON.parse(zugHistorie);
+        if (json.length > 1) {
+            for (var i = 0; i < json.length; i++) {
+                var id = JSON.stringify(json[i].id).replace("\"", "").replace("\\r\"", "");
+                var zug = JSON.stringify(json[i].zug).replace("\"", "").replace("\\r\"", "");
+                // console.log(i +" "+ id +" "+ zug);
+                dom.window.document.getElementsByTagName("div")[0].insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
+            }
+        } else {
+            var id = JSON.stringify(json[0].id).replace("\"", "").replace("\\r\"", "");
+            var zug = JSON.stringify(json[0].zug).replace("\"", "").replace("\\r\"", "");
+            dom.window.document.getElementsByTagName("div")[0].insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
+        }
+    }
     return dom.serialize();
 }
