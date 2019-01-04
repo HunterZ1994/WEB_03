@@ -1,0 +1,31 @@
+*{
+    font-family:  arial;
+}
+  table{
+    float:left;
+    border: "full";
+    background-color: white;
+    }
+
+  td{
+
+    width: 75px;
+    height: 75px;
+    text-align: center;
+
+  }
+  th{
+background-color: #7d492b;
+    padding:5px;
+  }
+
+  .schwarz{
+    background-color: #293133;
+  }
+form{
+  margin-left: 750px;
+  margin-top: 20px;
+}
+h3{
+  margin-left:12.5%;
+}

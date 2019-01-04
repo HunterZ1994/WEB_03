@@ -14,13 +14,18 @@ const newGame = require("./api/Game");
 const runningGame = require("./api/renderGame");
 const turn = require("./api/ziehe");
 
+const turnHistory = require("./api/getZugHistorie");
+
 
 //Routing Requests
-app.use(express.static("./public/img/"));
+app.use(express.static("./public/"));
+
 app.use("/", init);
 app.use("/neuesSpiel", newGame);
 app.use("/render", runningGame);
 app.use("/ziehe", turn);
+
+app.use("/getZugHistorie", turnHistory);
 
 //Exports
 module.exports = app;

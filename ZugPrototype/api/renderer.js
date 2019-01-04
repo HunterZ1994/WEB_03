@@ -37,7 +37,7 @@ function getAssociatedFigure(JSONString) {
     var json = JSON.parse(JSONString);
     var figur = JSON.stringify(json.type).replace("\\r\"", "").replace("\"", "");
     var weiss = JSON.stringify(json.weiss).replace("\\r\"", "").replace("\"", "");
-    var file = "";
+    var file = "./img/";
     file += figur.charAt(0);
     file += "_";
     if (weiss == "false") {
@@ -59,7 +59,6 @@ function renderMarked(jsonString, position){
             dom.window.document.getElementById(String(endposition)).style.borderWidth = "5px";
         }
     }
-    // console.log(dom.serialize())
     return dom.serialize();
 }
 
@@ -69,4 +68,3 @@ function renderFailure(JSONString, alertMessage){
     dom.window.document.head.insertAdjacentHTML("beforeend", "<script>alert('"+alertMessage+"')</script>");
     return dom.serialize();
 }
-

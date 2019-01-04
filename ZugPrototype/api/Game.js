@@ -22,13 +22,15 @@ router.get("/", (req, res) => {
             res.write(String(error));
         } else {
             if (String(body).includes("D_OK")) {
-                res.redirect("/render");
+                res.redirect("/render");    //renderGame
+                console.log("Spiel erfolgreich erstellt.");
                 res.end();
             } else {
                 res.writeHead(400, {
                     "Content-Type": "text/html"
                 });
                 res.write("Fehler beim Erstellen des Spiels");
+                console.log("Fehler beim Erstellen des Spiels");
                 res.end();
             }
         }
@@ -41,6 +43,8 @@ function getGeschlageneFiguren(xmlString) {
     var properties = xml.getElementsByTagName("propertiesarray")[0].childNodes;
     var geschlageneListe = new List();
     var geschlageneString = String(properties[1].textContent).split("\n");
+    console.log("***Die geschlagenenFiguren***");
+    console.log(geschlageneString);
     var Geschlagene = {
         anzahlGeschlageneFiguren: geschlageneString[1],
         status: geschlageneString[2],
