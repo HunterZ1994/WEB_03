@@ -88,12 +88,12 @@ function addZugHistorie(JSONString, position, zugHistorie) {
                 var id = JSON.stringify(json[i].id).replace("\"", "").replace("\\r\"", "");
                 var zug = JSON.stringify(json[i].zug).replace("\"", "").replace("\\r\"", "");
                 // console.log(i +" "+ id +" "+ zug);
-                dom.window.document.getElementsByTagName("div")[0].insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
+                dom.window.document.getElementById("zugHistorie").insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
             }
         } else {
             var id = JSON.stringify(json[0].id).replace("\"", "").replace("\\r\"", "");
             var zug = JSON.stringify(json[0].zug).replace("\"", "").replace("\\r\"", "");
-            dom.window.document.getElementsByTagName("div")[0].insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
+            dom.window.document.getElementById("zugHistorie").insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
         }
     }
     return dom.serialize();
