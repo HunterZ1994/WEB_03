@@ -33,14 +33,7 @@ router.get("/", (req, res) => {
                         res.write(String(error));
                         res.end();
                     } else {
-                        if (String(body).includes("Keine Zughistorie vorhanden!")) {
-                            res.writeHead(200, {
-                                "Content-Type": "text/html"
-                            });
-                            res.write(renderer.renderPageWithBelegung(jsonString));
-                            res.end();
-                           console.log("Kein Zug getätigt");
-                        } else if(String(body).includes("D_Fehler")){
+                       if(String(body).includes("D_Fehler") && !String(body).includes("Keine Zughistorie vorhanden!")){
                             res.writeHead(200, {
                                 "Content-Type": "text/html"
                             });
@@ -63,6 +56,7 @@ router.get("/", (req, res) => {
                                             res.write(renderer.renderFailure(jsonString, "Keine Züge von dieser Position möglich!"));
                                             res.end();
                                         }else{
+                                            console.log(FigurID);
                                         var position = JSON.stringify(getMöglicheZüge(body));
                                         res.write(renderer.addZugHistorie(jsonString, position, zugHistorie));
                                         res.end();
