@@ -6,8 +6,14 @@
     <meta charset="UTF-8">
     <title>Spielbrett</title>
     <script>function dragMe(id){
-            // window.location = '/render/'+id;
+            
+            if(String(window.location).includes("?ID=")){
+            var url = new URL(window.location);
+            var pos = url.searchParams.get("ID");
+                window.location="/render?ID="+pos +"&EndPosition="+id;
+            }else{
             window.location = '/render?ID='+id;
+            }
         }
     </script>
 </head>
@@ -22,7 +28,7 @@
 <div id ="brett">
 
     <h3 id="titel" >Schachspiel</h3>
-    <table border="full">
+    <table border="full" id="brettTable">
         <tr>
             <th></th>
             <th>A</th>

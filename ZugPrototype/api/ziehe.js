@@ -16,8 +16,11 @@ router.get("/", (req, res) => {
             res.write(String(error));
         }else{
             if(String(body).includes("D_Fehler")){
-              console.log("es war einfehler drin");
-                console.log(String(body));
+              console.log("es war ein Fehler drin");
+              console.log(String(body));
+            }else if(String(body).includes("Sie sind nicht am Zug!")){
+                res.write("Sie sind nicht am zug");
+                res.end();
             }
             res.redirect("/render");
         }

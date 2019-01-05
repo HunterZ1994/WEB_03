@@ -13,6 +13,7 @@ const {
 const getBelegungURL = "http://www.game-engineering.de:8080/rest/schach/spiel/getAktuelleBelegung/";
 const getErlaubteZuegeURL = "http://www.game-engineering.de:8080/rest/schach/spiel/getErlaubteZuege/";
 const getZugHistorieURL = "http://www.game-engineering.de:8080/rest/schach/spiel/getZugHistorie/";
+const getSpielDaten = "http://www.game-engineering.de:8080/rest/schach/spiel/getSpielDaten/";
 
 router.get("/", (req, res) => {
     var requestURL;
@@ -25,7 +26,7 @@ router.get("/", (req, res) => {
             } else {
                 var jsonString = JSON.stringify(getFigurenListe(body));
                 var FigurID = req.query.ID;
-                var ZugHistorie = req.query.zugHistorie;
+                var EndPosition = req.query.EndPosition;
                 var requestURL = getZugHistorieURL + process.env.gameID;
                 request(requestURL, (error, response, body) => {
                     if (error) {
@@ -33,33 +34,40 @@ router.get("/", (req, res) => {
                         res.write(String(error));
                         res.end();
                     } else {
-                       if(String(body).includes("D_Fehler") && !String(body).includes("Keine Zughistorie vorhanden!")){
+                        if (String(body).includes("D_Fehler") && !String(body).includes("Keine Zughistorie vorhanden!")) {
                             res.writeHead(200, {
                                 "Content-Type": "text/html"
                             });
                             res.write(renderer.renderFailure(jsonString, "Ein Fehler ist aufgetreten"));
                             res.end();
-                        }else{
+                        } else {
                             var zugHistorie = JSON.stringify(getZugHistorie(String(body)));
                             if (FigurID && FigurID != undefined) {
-                                requestURL = getErlaubteZuegeURL + process.env.gameID+"/"+FigurID;
+                                requestURL = getErlaubteZuegeURL + process.env.gameID + "/" + FigurID;
                                 request(requestURL, (error, response, body) => {
                                     if (error) {
                                         res.writeHead(400);
                                         res.write(String(error));
                                         res.end();
                                     } else {
-                                        res.writeHead(200, {
-                                            "Content-Type": "text/html"
-                                        });
-                                        if(String(body).includes("D_Fehler")){
-                                            res.write(renderer.renderFailure(jsonString, "Keine Züge von dieser Position möglich!"));
+                                        if (String(body).includes("Keine Zuege erlaubt von diesem Feld!")) {
+                                            res.writeHead(200, {
+                                                "Content-Type": "text/html"
+                                            });
+                                            res.write(renderer.addZugHistorie(jsonString, null, zugHistorie, "Keine Züge von dieser Position möglich!"));
                                             res.end();
-                                        }else{
-                                            console.log(FigurID);
-                                        var position = JSON.stringify(getMöglicheZüge(body));
-                                        res.write(renderer.addZugHistorie(jsonString, position, zugHistorie));
-                                        res.end();
+                                        } else {
+                                            if (EndPosition && EndPosition != undefined) {
+                                                res.redirect("/ziehe/?von=" + FigurID + "&nach=" + EndPosition);
+                                            } else {
+                                                res.writeHead(200, {
+                                                    "Content-Type": "text/html"
+                                                });
+                                                determineWinner(req, res);
+                                                var position = JSON.stringify(getMöglicheZüge(body));
+                                                res.write(renderer.addZugHistorie(jsonString, position, zugHistorie));
+                                                res.end();
+                                            }
                                         }
                                     }
                                 })
@@ -78,6 +86,25 @@ router.get("/", (req, res) => {
 
     )
 })
+
+function determineWinner(req, res) {
+    requestURL = getSpielDaten + process.env.gameID;
+    request(requestURL, (error, response, body) => {
+        if (error) {
+            writeHead(400);
+            res.write(String(error));
+            res.end();
+        } else {
+            if (String(body).includes("SchwarzImSchach")) {
+                res.write("Weiss hat gewonnen!");
+                res.end();
+            } else if (String(body).includes("WeissImSchach")) {
+                res.write("Schwarz hat gewonnen!");
+                res.end();
+            }
+        }
+    })
+}
 
 function getFigurenListe(xmlString) {
     var xml = new xmlDom().parseFromString(String(xmlString));

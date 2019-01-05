@@ -1,26 +1,75 @@
+html {
+  background: url("/img/chessindex.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+h1{
+  margin-left: 45%;
+  margin-right: 45%;
+  text-align: center;
+  /* background-color: #8d99a5; */
+  background-color: rgba(141, 153, 165, 0.63);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  /* opacity: 25%; */
+  text-align: center;
+  font-size: 25px;
+  margin: 4px 2px;
+  text-decoration: none;
+  border-radius: 12px;
+  font-family: "Early GameBoy";
+}
 
-.button{
-    background-color: #8d99a5;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 12px;
-    font-family: "Early GameBoy";
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  
+  
+  width: 98%;
+  height: 98%;
 }
-#newB{
-  float:left;
+
+.button {
+  background-color: #8d99a5;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 12px;
+  font-family: "Early GameBoy";
 }
-#loadB{
+
+#settings {
+  /* margin-left: 30px; */
+  margin-left: 45%;
+  margin-right: 45%;
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+/* #newB {
+  float: left;
+}
+
+#loadB {
   margin-top: 3%;
-  margin-left: -15.75%;
-}
-.button:hover {opacity: 1
+  margin-left: -7.5%;
+  float: left;
+} */
+
+.button:hover {
+  opacity: 1
 }

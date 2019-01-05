@@ -4,16 +4,21 @@ const fs = require("fs");
 const request = require("request");
 const xmlDom = require("xmldom").DOMParser;
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const {
+    JSDOM
+} = jsdom;
 const List = require("collections/list");
 
 
 var newGameURL = "http://www.game-engineering.de:8080/rest/schach/spiel/admin/neuesSpiel/";
 
 router.get("/", (req, res) => {
-    if(!process.env.gameID || process.env.gameID == undefined){
-    process.env.gameID = req.query.neuesSpielID;
+    if (!process.env.gameID || process.env.gameID == undefined) {
+        process.env.gameID = req.query.neuesSpielID;
     }
+    if(!process.env.FarbeSpieler1)
+    var Farbe = req.query.Farbe;
+    
     requestURL = newGameURL + process.env.gameID;
     request(requestURL, (error, response, body) => {
         if (error) {
@@ -21,8 +26,9 @@ router.get("/", (req, res) => {
             res.write(String(error));
         } else {
             if (String(body).includes("D_OK")) {
-                res.redirect("/render");    //renderGame
+                res.redirect("/render"); //renderGame
                 console.log("Spiel erfolgreich erstellt.");
+                console.log(Farbe);
                 res.end();
             } else {
                 res.writeHead(400, {
