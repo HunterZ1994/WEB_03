@@ -1,0 +1,26 @@
+
+.button{
+    background-color: #8d99a5;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: "Early GameBoy";
+}
+#newB{
+  float:left;
+}
+#loadB{
+  margin-top: 3%;
+  margin-left: -15.75%;
+}
+.button:hover {opacity: 1
+}

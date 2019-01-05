@@ -1,0 +1,21 @@
+<!Doctype html>
+<html>
+    <head>
+      <link rel="stylesheet" href="/CSS/indexStyle.css">
+        <title>Neues Spiel erstellen</title>
+    </head>
+    <body>
+        <div id="container">
+            <!-- <img src="./B_S.png" alt="Turm Weiss"> -->
+            <img src="/img/chessindex.jpg" alt="Page-header" id="pic">
+        </div>
+        <form action="/neuesSpiel" method="GET"class="button"id="newB">
+            <input type="text" maxlength="3" name="neuesSpielID" id="NeuesSpielID">
+            <input type="submit" value="neues Spiel">
+        </form>
+        <form action="/laden" method="GET"class="button" id="loadB">
+            <input type="text" maxlength="3" name="ladenSpielID" id="ladenSpielID">
+            <input type="submit" value="Spiel laden">
+        </form>
+    </body>
+</html>

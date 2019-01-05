@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/CSS/spielbrettstyle.css">
+    <meta charset="UTF-8">
+    <title>Spielbrett</title>
+    <script>function dragMe(id){
+            // window.location = '/render/'+id;
+            window.location = '/render?ID='+id;
+        }
+    </script>
+</head>
+
+<body background="./img/brettBild1.jpg">
+
+<!---<audio id ="audio" controls autoplay hidden loop>
+      <source src="./music/Shit.mp3" type="audio/mpeg">
+    <source src="./music/Epic.mp3" type="audio/mpeg">
+</audio> --->
+
+<div id ="brett">
+
+    <h3 id="titel" >Schachspiel</h3>
+    <table border="full">
+        <tr>
+            <th></th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+            <th>G</th>
+            <th>H</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>8</th>
+            <td id="a8" onclick="dragMe(id)" class="schwarz"></td>
+            <td id="b8" onclick="dragMe(id)"class="weiss"></td>
+            <td id="c8" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="d8" onclick="dragMe(id)"class="weiss"></td>
+            <td id="e8" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="f8" onclick="dragMe(id)"class="weiss"></td>
+            <td id="g8" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="h8" onclick="dragMe(id)"class="weiss"></td>
+            <th>8</th>
+        </tr>
+        <tr>
+            <th>7</th>
+            <td id="a7" onclick="dragMe(id)"class="weiss"></td>
+            <td id="b7" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="c7" onclick="dragMe(id)"class="weiss"></td>
+            <td id="d7" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="e7" onclick="dragMe(id)"class="weiss"></td>
+            <td id="f7" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="g7" onclick="dragMe(id)"class="weiss"></td>
+            <td id="h7" onclick="dragMe(id)"class="schwarz"></td>
+            <th>7</th>
+        </tr>
+        <tr>
+            <th>6</th>
+            <td id="a6" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="b6" onclick="dragMe(id)"class="weiss"></td>
+            <td id="c6" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="d6" onclick="dragMe(id)"class="weiss"></td>
+            <td id="e6" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="f6" onclick="dragMe(id)"class="weiss"></td>
+            <td id="g6" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="h6" onclick="dragMe(id)"class="weiss"></td>
+            <th>6</th>
+        </tr>
+        <tr>
+            <th>5</th>
+            <td id="a5" onclick="dragMe(id)"class="weiss"></td>
+            <td id="b5" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="c5" onclick="dragMe(id)"class="weiss"></td>
+            <td id="d5" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="e5" onclick="dragMe(id)"class="weiss"></td>
+            <td id="f5" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="g5" onclick="dragMe(id)"class="weiss"></td>
+            <td id="h5" onclick="dragMe(id)"class="schwarz"></td>
+            <th>5</th>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td id="a4" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="b4" onclick="dragMe(id)"class="weiss"></td>
+            <td id="c4" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="d4" onclick="dragMe(id)"class="weiss"></td>
+            <td id="e4" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="f4" onclick="dragMe(id)"class="weiss"></td>
+            <td id="g4" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="h4" onclick="dragMe(id)"class="weiss"></td>
+            <th>4</th>
+        </tr>
+        <tr>
+            <th>3</th>
+            <td id="a3" onclick="dragMe(id)"class="weiss"></td>
+            <td id="b3" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="c3" onclick="dragMe(id)"class="weiss"></td>
+            <td id="d3" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="e3" onclick="dragMe(id)"class="weiss"></td>
+            <td id="f3" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="g3" onclick="dragMe(id)"class="weiss"></td>
+            <td id="h3" onclick="dragMe(id)"class="schwarz"></td>
+            <th>3</th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td id="a2" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="b2" onclick="dragMe(id)"class="weiss"></td>
+            <td id="c2" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="d2" onclick="dragMe(id)"class="weiss"></td>
+            <td id="e2" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="f2" onclick="dragMe(id)"class="weiss"></td>
+            <td id="g2" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="h2" onclick="dragMe(id)"class="weiss"></td>
+            <th>2</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td id="a1" onclick="dragMe(id)"class="weiss"></td>
+            <td id="b1" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="c1" onclick="dragMe(id)"class="weiss"></td>
+            <td id="d1" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="e1" onclick="dragMe(id)"class="weiss"></td>
+            <td id="f1" onclick="dragMe(id)"class="schwarz"></td>
+            <td id="g1" onclick="dragMe(id)"class="weiss"></td>
+            <td id="h1" onclick="dragMe(id)"class="schwarz"></td>
+            <th>1</th>
+        </tr>
+        <th></th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+        <th>G</th>
+        <th>H</th>
+        <th></th>
+    </table>
+
+</div>
+
+<div id="button">
+
+    <div id="zieheB">
+         <form action="/ziehe" method="GET" class="button" >
+             <input type="text" name="von" >
+             <input type="text" name="nach">
+        <input id ="ziehe" type="submit" value="ziehe">
+        </form>
+    </div>
+
+
+
+    <div id ="saveB">
+        <form action="/speichernSpiel" method="GET" class="button" >
+            <input type="submit" value="Spiel speichern">
+        </form>
+    </div>
+
+</div>
+<div id="zugHistorie">
+    <h3 >Zug Historie</h3>
+</div>
+</body>
+
+</html>
