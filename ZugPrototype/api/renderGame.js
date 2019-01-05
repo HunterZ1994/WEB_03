@@ -33,13 +33,20 @@ router.get("/", (req, res) => {
                         res.write(String(error));
                         res.end();
                     } else {
-                        if (String(body).includes("D_Fehler")) {
+                        if (String(body).includes("Keine Zughistorie vorhanden!")) {
                             res.writeHead(200, {
                                 "Content-Type": "text/html"
                             });
-                            res.write(renderer.renderFailure(jsonString, "Es wurden noch keine Züge getätigt"));
+                            res.write(renderer.renderPageWithBelegung(jsonString));
                             res.end();
-                        } else {
+                           console.log("Kein Zug getätigt");
+                        } else if(String(body).includes("D_Fehler")){
+                            res.writeHead(200, {
+                                "Content-Type": "text/html"
+                            });
+                            res.write(renderer.renderFailure(jsonString, "Ein Fehler ist aufgetreten"));
+                            res.end();
+                        }else{
                             var zugHistorie = JSON.stringify(getZugHistorie(String(body)));
                             if (FigurID && FigurID != undefined) {
                                 requestURL = getErlaubteZuegeURL + process.env.gameID+"/"+FigurID;
@@ -53,7 +60,8 @@ router.get("/", (req, res) => {
                                             "Content-Type": "text/html"
                                         });
                                         if(String(body).includes("D_Fehler")){
-                                            res.write(renderer.renderFailure(jsonString, "Keine Züge von dieser Position möglich!"))
+                                            res.write(renderer.renderFailure(jsonString, "Keine Züge von dieser Position möglich!"));
+                                            res.end();
                                         }else{
                                         var position = JSON.stringify(getMöglicheZüge(body));
                                         res.write(renderer.addZugHistorie(jsonString, position, zugHistorie));
@@ -139,7 +147,7 @@ function getZugHistorie(xmlString) {
             ZugListe.push(Zug);
         }
     } else {
-        var entry = xml.getElementsByTagName("entry")[1].textContent;
+        var entry = xml.getElementsByTagName("entry")[0].textContent;
         var Zug = {
             id: 0,
             zug: entry
