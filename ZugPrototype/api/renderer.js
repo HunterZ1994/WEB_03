@@ -3,9 +3,7 @@ const jsdom = require("jsdom");
 const {
     JSDOM
 } = jsdom;
-const request = require("request");
-const Readable = require("stream").Readable;
-const Writable = require("stream").Writable;
+
 
 
 module.exports = {
@@ -48,7 +46,7 @@ function getAssociatedFigure(JSONFigur) {
     } else {
         file += "W.png";
     }
-    return "'"+ file+ "'";
+    return "'" + file + "'";
 }
 //Render Spielfeld mit aktueller Belegung und den hervorgehobenen Feldern.
 function renderMarked(jsonString, position, alertMessage) {
@@ -88,12 +86,12 @@ function addZugHistorie(JSONString, position, zugHistorie, alertMessage) {
     var dom = new JSDOM(gameData);
     if (String(zugHistorie).includes("Keine Zughistorie vorhanden!") || (json.length % 2) == 0) {
         console.log("weiss am zug");
-    }else{
+    } else {
         dom.window.document.getElementsByTagName("table")[0].style.transform = "rotate(180deg)";
-        for(var i=0; i<dom.window.document.getElementsByTagName("th").length; i++){
+        for (var i = 0; i < dom.window.document.getElementsByTagName("th").length; i++) {
             dom.window.document.getElementsByTagName("th")[i].style.transform = "rotate(180deg)";
         }
-        for(var i=0; i<dom.window.document.getElementsByTagName("td").length; i++){
+        for (var i = 0; i < dom.window.document.getElementsByTagName("td").length; i++) {
             dom.window.document.getElementsByTagName("td")[i].style.transform = "rotate(180deg)";
         }
 
