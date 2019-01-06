@@ -21,7 +21,7 @@ function renderPureHTML() {
     return data;
 }
 
-function renderPageWithBelegung(JSONString, flagg) {
+function renderPageWithBelegung(JSONString) {
     var data = fs.readFileSync("./html/spielbrett.html");
     var dom = new JSDOM(data);
     var json = JSON.parse(JSONString);
@@ -36,8 +36,8 @@ function renderPageWithBelegung(JSONString, flagg) {
     return dom.serialize();
 }
 
-function getAssociatedFigure(JSONString) {
-    var json = JSON.parse(JSONString);
+function getAssociatedFigure(JSONFigur) {
+    var json = JSON.parse(JSONFigur);
     var figur = JSON.stringify(json.type).replace("\\r\"", "").replace("\"", "");
     var weiss = JSON.stringify(json.weiss).replace("\\r\"", "").replace("\"", "");
     var file = "./img/";
@@ -48,7 +48,7 @@ function getAssociatedFigure(JSONString) {
     } else {
         file += "W.png";
     }
-    return "\"./" + file + "\"";
+    return "'"+ file+ "'";
 }
 //Render Spielfeld mit aktueller Belegung und den hervorgehobenen Feldern.
 function renderMarked(jsonString, position, alertMessage) {
@@ -110,6 +110,5 @@ function addZugHistorie(JSONString, position, zugHistorie, alertMessage) {
         var zug = JSON.stringify(json[0].zug).replace("\"", "").replace("\\r\"", "");
         dom.window.document.getElementById("zugHistorie").insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
     }
-    fs.writeFileSync("./dom.txt", dom.serialize());
     return dom.serialize();
 }

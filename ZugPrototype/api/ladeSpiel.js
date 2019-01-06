@@ -38,23 +38,6 @@ router.get("/", (req, res) => {
 });
 
 
-function getGeschlageneFiguren(xmlString) {
-    var xml = new xmlDom().parseFromString(String(xmlString));
-    var properties = xml.getElementsByTagName("propertiesarray")[0].childNodes;
-    var geschlageneListe = new List();
-    var geschlageneString = String(properties[1].textContent).split("\n");
-    console.log("Die geschlagenenFiguren");
-    console.log(geschlageneString);
-    var Geschlagene = {
-        anzahlGeschlageneFiguren: geschlageneString[1],
-        status: geschlageneString[2],
-        nach: geschlageneString[3],
-        von: geschlageneString[4],
-        bemerkung: geschlageneString[5],
-        anzahlFigurenAufBrett: geschlageneString[6]
-    }
-    geschlageneListe.push(Geschlagene);
-    return geschlageneListe;
-}
+
 
 module.exports = router;

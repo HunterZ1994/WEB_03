@@ -15,11 +15,12 @@ router.get("/", (req, res) => {
             res.writeHead(200);
             res.write(String(error));
         }else{
-            if(String(body).includes("D_Fehler")){
-              console.log("es war ein Fehler drin");
+            
+            if(String(body).includes("Sie sind nicht am Zug!")){
+              console.log("Sie sind nicht am Zug");
               console.log(String(body));
-            }else if(String(body).includes("Sie sind nicht am Zug!")){
-                res.write("Sie sind nicht am zug");
+            }else if(String(body).includes("D_Fehler")){
+                res.write("es war ein Fehler drin");
                 res.end();
             }
             res.redirect("/render");

@@ -63,7 +63,6 @@ router.get("/", (req, res) => {
                                                 res.writeHead(200, {
                                                     "Content-Type": "text/html"
                                                 });
-                                                determineWinner(req, res);
                                                 var position = JSON.stringify(getMöglicheZüge(body));
                                                 res.write(renderer.addZugHistorie(jsonString, position, zugHistorie));
                                                 res.end();
@@ -87,24 +86,6 @@ router.get("/", (req, res) => {
     )
 })
 
-function determineWinner(req, res) {
-    requestURL = getSpielDaten + process.env.gameID;
-    request(requestURL, (error, response, body) => {
-        if (error) {
-            writeHead(400);
-            res.write(String(error));
-            res.end();
-        } else {
-            if (String(body).includes("SchwarzImSchach")) {
-                res.write("Weiss hat gewonnen!");
-                res.end();
-            } else if (String(body).includes("WeissImSchach")) {
-                res.write("Schwarz hat gewonnen!");
-                res.end();
-            }
-        }
-    })
-}
 
 function getFigurenListe(xmlString) {
     var xml = new xmlDom().parseFromString(String(xmlString));
@@ -126,7 +107,10 @@ function getFigurenListe(xmlString) {
         }
         FigurenListe.push(Figur);
     }
-    var bauer = FigurenListe[FigurenListe.length - 1]
+    for(var i=3; i<properties.length; i++){
+        console.log(String(properties[i]));
+        console.log("––––––––––––––––––––––––––––––––––––––");
+    }
     return FigurenListe;
 }
 

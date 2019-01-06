@@ -16,8 +16,6 @@ router.get("/", (req, res) => {
     if (!process.env.gameID || process.env.gameID == undefined) {
         process.env.gameID = req.query.neuesSpielID;
     }
-    if(!process.env.FarbeSpieler1)
-    var Farbe = req.query.Farbe;
     
     requestURL = newGameURL + process.env.gameID;
     request(requestURL, (error, response, body) => {
@@ -28,7 +26,6 @@ router.get("/", (req, res) => {
             if (String(body).includes("D_OK")) {
                 res.redirect("/render"); //renderGame
                 console.log("Spiel erfolgreich erstellt.");
-                console.log(Farbe);
                 res.end();
             } else {
                 res.writeHead(400, {
@@ -41,25 +38,5 @@ router.get("/", (req, res) => {
         }
     })
 });
-
-
-function getGeschlageneFiguren(xmlString) {
-    var xml = new xmlDom().parseFromString(String(xmlString));
-    var properties = xml.getElementsByTagName("propertiesarray")[0].childNodes;
-    var geschlageneListe = new List();
-    var geschlageneString = String(properties[1].textContent).split("\n");
-    console.log("***Die geschlagenenFiguren***");
-    console.log(geschlageneString);
-    var Geschlagene = {
-        anzahlGeschlageneFiguren: geschlageneString[1],
-        status: geschlageneString[2],
-        nach: geschlageneString[3],
-        von: geschlageneString[4],
-        bemerkung: geschlageneString[5],
-        anzahlFigurenAufBrett: geschlageneString[6]
-    }
-    geschlageneListe.push(Geschlagene);
-    return geschlageneListe;
-}
 
 module.exports = router
