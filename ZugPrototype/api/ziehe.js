@@ -5,8 +5,8 @@ const zieheURL = "http://www.game-engineering.de:8080/rest/schach/spiel/ziehe/"
 
 /*erhält von den eingabefeldern von Spielbrett.html von und nach*/
 
-router.get("/", (req, res) => {
-    var von = req.query.von;
+router.get("/", (req, res) => {   //es geht mit "/", die vorige URL ist schon "drin"
+    var von = req.query.von;    //kommen nach '?'
     var nach = req.query.nach;
     //baut die URL zusammen, die abgeschickt werden soll
     requestURL =  zieheURL + process.env.gameID + "/" + von + "/" + nach;
@@ -15,12 +15,11 @@ router.get("/", (req, res) => {
             res.writeHead(200);
             res.write(String(error));
         }else{
-            
-            if(String(body).includes("Sie sind nicht am Zug!")){
-              console.log("Sie sind nicht am Zug");
+            if(String(body).includes("D_Fehler")){
+              console.log("es war ein Fehler drin");
               console.log(String(body));
-            }else if(String(body).includes("D_Fehler")){
-                res.write("es war ein Fehler drin");
+            }else if(String(body).includes("Sie sind nicht am Zug!")){
+                res.write("Sie sind nicht am Zug");
                 res.end();
             }
             res.redirect("/render");
@@ -28,4 +27,4 @@ router.get("/", (req, res) => {
     });
 });
 
-module.exports = router;
+module.exports = router;  //router ist unterklasse von app

@@ -4,24 +4,20 @@ const {
     JSDOM
 } = jsdom;
 
-
-
 module.exports = {
-    renderPureHTML,
     renderPageWithBelegung,
     renderMarked,
     renderFailure,
     addZugHistorie
 }
 
-function renderPureHTML() {
-    var data = fs.readFileSync("./html/spielbrett.html");
-    return data;
-}
+//JSONString ist Liste der aktuelle Belegung des Schachbretts in JSON Format, kommt von getFigurenListe
+
+
 
 function renderPageWithBelegung(JSONString) {
     var data = fs.readFileSync("./html/spielbrett.html");
-    var dom = new JSDOM(data);
+    var dom = new JSDOM(data);    //erzeugt einen DOM Baum und speichert ihn
     var json = JSON.parse(JSONString);
     for (var i = 0; i < json.length; i++) {
         var position = JSON.stringify(json[i].position).replace("\"", "").replace("\\r\"", "");
@@ -31,26 +27,26 @@ function renderPageWithBelegung(JSONString) {
         }
     }
 
-    return dom.serialize();
+    return dom.serialize(); //gibt html als string zurück
 }
 
-function getAssociatedFigure(JSONFigur) {
-    var json = JSON.parse(JSONFigur);
-    var figur = JSON.stringify(json.type).replace("\\r\"", "").replace("\"", "");
+function getAssociatedFigure(JSONStringEinerFigur) {
+    var json = JSON.parse(JSONStringEinerFigur);
+    var figurtyp = JSON.stringify(json.type).replace("\\r\"", "").replace("\"", "");   //stringify macht einen JSON-String
     var weiss = JSON.stringify(json.weiss).replace("\\r\"", "").replace("\"", "");
     var file = "./img/";
-    file += figur.charAt(0);
+    file += figurtyp.charAt(0);
     file += "_";
     if (weiss == "false") {
         file += "S.png";
     } else {
         file += "W.png";
     }
-    return "'" + file + "'";
+    return "\"./" + file + "\"";
 }
 //Render Spielfeld mit aktueller Belegung und den hervorgehobenen Feldern.
 function renderMarked(jsonString, position, alertMessage) {
-    var gameData = renderFailure(jsonString, alertMessage);
+    var gameData = renderFailure(jsonString, alertMessage); //gamedata ist eine html-datei, die das schachfeld mit figuren drauf enthält
     var dom = new JSDOM(gameData);
     if (position) {
         var json = JSON.parse(position);
@@ -86,12 +82,12 @@ function addZugHistorie(JSONString, position, zugHistorie, alertMessage) {
     var dom = new JSDOM(gameData);
     if (String(zugHistorie).includes("Keine Zughistorie vorhanden!") || (json.length % 2) == 0) {
         console.log("weiss am zug");
-    } else {
+    }else{
         dom.window.document.getElementsByTagName("table")[0].style.transform = "rotate(180deg)";
-        for (var i = 0; i < dom.window.document.getElementsByTagName("th").length; i++) {
+        for(var i=0; i<dom.window.document.getElementsByTagName("th").length; i++){
             dom.window.document.getElementsByTagName("th")[i].style.transform = "rotate(180deg)";
         }
-        for (var i = 0; i < dom.window.document.getElementsByTagName("td").length; i++) {
+        for(var i=0; i<dom.window.document.getElementsByTagName("td").length; i++){
             dom.window.document.getElementsByTagName("td")[i].style.transform = "rotate(180deg)";
         }
 
@@ -108,5 +104,6 @@ function addZugHistorie(JSONString, position, zugHistorie, alertMessage) {
         var zug = JSON.stringify(json[0].zug).replace("\"", "").replace("\\r\"", "");
         dom.window.document.getElementById("zugHistorie").insertAdjacentHTML("beforeend", "<p id=\"" + id + "\">" + zug + "</p>");
     }
-    return dom.serialize();
+
+    return dom.serialize();     //macht aus dom einen HTML-String
 }

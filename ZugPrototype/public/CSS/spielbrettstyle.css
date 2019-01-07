@@ -39,7 +39,12 @@ form{
 #ziehe{
   font-family: "Early GameBoy";
   color: white;
-  background-color: #8d99a5;
+  background-color: darkblue;
+}
+#save{
+    font-family: "Early GameBoy";
+    color: white;
+    background-color: darkblue;
 }
 #brett{
   text-align: center;
@@ -50,30 +55,19 @@ form{
 
 }
 
-
-#titel{
-  color: white;
-  font-family: "Early GameBoy";
-  size: 20px;
-}
 #zugHistorie{
   color: white;
   size: 20px;
   margin-top: -42.5%;
   margin-left: 5%;
 }
-#saveB{
-margin-left:37.5%;
-margin-top: -3.3%;
-}
+
 .button{
-    background-color: #8d99a5;
     border: none;
     color: white;
     padding: 8px 16px;
     text-align: center;
     font-size: 16px;
-    margin: 4px 2px;
     opacity: 0.6;
     transition: 0.3s;
     display: inline-block;
@@ -81,8 +75,6 @@ margin-top: -3.3%;
     cursor: pointer;
     border-radius: 12px;
     font-family: "Early GameBoy";
-    margin-left: 35%;
-    margin-top:2%;
 
 }
 .button:hover {opacity: 1

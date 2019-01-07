@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
 const xmlDom = require("xmldom").DOMParser;
-const jsdom = require("jsdom");
 const request = require("request");
 const List = require("collections/list");
 const renderer = require("./renderer");
+const jsdom = require("jsdom");
 const {
     JSDOM
 } = jsdom;
 
+  //benutzt renderer.js als bibliothek
 const getBelegungURL = "http://www.game-engineering.de:8080/rest/schach/spiel/getAktuelleBelegung/";
 const getErlaubteZuegeURL = "http://www.game-engineering.de:8080/rest/schach/spiel/getErlaubteZuege/";
 const getZugHistorieURL = "http://www.game-engineering.de:8080/rest/schach/spiel/getZugHistorie/";
@@ -18,15 +18,16 @@ const getSpielDaten = "http://www.game-engineering.de:8080/rest/schach/spiel/get
 router.get("/", (req, res) => {
     var requestURL;
     requestURL = getBelegungURL + process.env.gameID;
-    request(requestURL, (error, response, body) => {
+    //holt sich alle nötigen DAten vom Server und zeigt das Spielbrett beim Client an
+    request(requestURL, (error, response, body) => {    //body ist das was auf der Seite angezeigt wird
             if (error) {
                 res.writeHead(400);
                 res.write(String(error));
                 res.end();
             } else {
                 var jsonString = JSON.stringify(getFigurenListe(body));
-                var FigurID = req.query.ID;
-                var EndPosition = req.query.EndPosition;
+                var FigurID = req.query.ID;         //in der URL sind die query parameter mit '?'
+                var EndPosition = req.query.EndPosition;    //wo die figur hinziehensoll
                 var requestURL = getZugHistorieURL + process.env.gameID;
                 request(requestURL, (error, response, body) => {
                     if (error) {
@@ -42,7 +43,7 @@ router.get("/", (req, res) => {
                             res.end();
                         } else {
                             var zugHistorie = JSON.stringify(getZugHistorie(String(body)));
-                            if (FigurID && FigurID != undefined) {
+                            if (FigurID && (FigurID != undefined)) {
                                 requestURL = getErlaubteZuegeURL + process.env.gameID + "/" + FigurID;
                                 request(requestURL, (error, response, body) => {
                                     if (error) {
@@ -63,6 +64,7 @@ router.get("/", (req, res) => {
                                                 res.writeHead(200, {
                                                     "Content-Type": "text/html"
                                                 });
+
                                                 var position = JSON.stringify(getMöglicheZüge(body));
                                                 res.write(renderer.addZugHistorie(jsonString, position, zugHistorie));
                                                 res.end();
@@ -86,19 +88,38 @@ router.get("/", (req, res) => {
     )
 })
 
+function determineWinner(req, res) {
+    requestURL = getSpielDaten + process.env.gameID;
+    request(requestURL, (error, response, body) => {
+        if (error) {
+            res.writeHead(400);
+            res.write(String(error));
+            res.end();
+        } else {
+            if (String(body).includes("SchwarzImSchach")) {
+                res.write("Weiss hat gewonnen!");
+                res.end();
+            } else if (String(body).includes("WeissImSchach")) {
+                res.write("Schwarz hat gewonnen!");
+                res.end();
+            }
+        }
+    })
+}
 
 function getFigurenListe(xmlString) {
     var xml = new xmlDom().parseFromString(String(xmlString));
     var properties = xml.getElementsByTagName("propertiesarray")[0].childNodes;
     var FigurenListe = new List();
     var weissindex;
-    for (var i = 3; i < properties.length; i += 2) {
+
+    for (var i = 3; i < properties.length; i += 2) {    //weil jedes zweite property leer ist
         var string = properties[i].textContent;
         var FigurString = string.split("\n");
         if (FigurString[3].includes("D_Figur")) {
-            weissindex = 4;
+            weissindex = 4;     //bei laden ist farbe auf 4
         } else {
-            weissindex = 3;
+            weissindex = 3;       //bei neues spiel auf 3
         }
         var Figur = {
             position: FigurString[1],
@@ -107,11 +128,8 @@ function getFigurenListe(xmlString) {
         }
         FigurenListe.push(Figur);
     }
-    for(var i=3; i<properties.length; i++){
-        console.log(String(properties[i]));
-        console.log("––––––––––––––––––––––––––––––––––––––");
-    }
-    return FigurenListe;
+
+      return FigurenListe;
 }
 
 function getMöglicheZüge(xmlString) {
@@ -145,7 +163,7 @@ function getZugHistorie(xmlString) {
         for (var i = 1; i < properties.length; i += 2) {
             var ZugString = properties[i].textContent.split("\n");
             var Zug = {
-                id: (i - 1) / 2,
+                id: (i - 1) / 2,                  //jeden zweiten property
                 zug: ZugString[1]
             }
             // console.log(JSON.stringify(Zug));

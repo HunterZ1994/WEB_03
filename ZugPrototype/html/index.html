@@ -8,24 +8,26 @@
     <body>
         <h1>Schach Gruppe A5</h1>
         <div id="settings">
-        <form>
-            <input type="radio" id="weiss" name="Farbauswahl" value="Weiss" onclick="document.getElementById('farbeNeu').value = value; document.getElementById('farbeLaden').value = value;">
-            <label for="weiss"> Weiß</label> <br/>
-            <input type="radio" id="schwarz" name="Farbauswahl" value="Schwarz" onclick="document.getElementById('farbeNeu').value = value; document.getElementById('farbeLaden').value = value;">
-            <label for="schwarz"> Schwarz</label> <br/>
-            <label for="SpielID"> Spiel ID</label>
-            <input type="text" name="SpielID" onchange="document.getElementById('NeuesSpielID').value = value; document.getElementById('ladenSpielID').value = value;">
+
+
+            <p>
+            <input type="text" placeholder=" Spiel ID " name="SpielID" onchange="document.getElementById('NeuesSpielID').value = value; document.getElementById('ladenSpielID').value = value;">
+           </p>
             <br/>
-        </form>
-        <form action="/neuesSpiel" method="GET"class="button"id="newB">
+
+
+        <form action="/neuesSpiel" method="GET" id="newB">
             <input type="hidden" maxlength="3" name="neuesSpielID" id="NeuesSpielID">
             <input type="hidden" id="farbeNeu" name="Farbe">
-            <input type="submit" value="neues Spiel">
+            <!-- <input type="submit" value="neues Spiel"> -->
+            <button type="submit" value="neues Spiel" class="button" ><span>neues Spiel</span></button>
         </form><br/>
-        <form action="/laden" method="GET"class="button" id="loadB">
+
+        <form action="/laden" method="GET" id="loadB">
             <input type="hidden" maxlength="3" name="ladenSpielID" id="ladenSpielID">
             <input type="hidden" id="farbeLaden" name="Farbe">
-            <input type="submit" value="Spiel laden">
+            <button type="submit" value="Spiel laden" class="button" ><span>Spiel laden</span></button>
+          <!--  <input  type="submit" value="Spiel laden"> -->
         </form>
     </div>
     </body>
