@@ -8,9 +8,6 @@ router.get("/", (req, res) => {
     if (!process.env.gameID || process.env.gameID == undefined) {
         process.env.gameID = req.query.neuesSpielID;
     }
-    if(!process.env.FarbeSpieler1)
-    var Farbe = req.query.Farbe;
-
     requestURL = newGameURL + process.env.gameID;
     request(requestURL, (error, response, body) => {
         if (error) {
@@ -20,7 +17,6 @@ router.get("/", (req, res) => {
             if (String(body).includes("D_OK")) {
                 res.redirect("/render"); //renderGame     die URL wird geändert, dadurch leitet app.js weiter
                 console.log("Spiel erfolgreich erstellt.");
-                console.log(Farbe);
                 res.end();
             } else {
                 res.writeHead(400, {

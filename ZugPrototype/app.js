@@ -9,6 +9,7 @@ const fs = require("fs");
 const init = require("./api/init");
 const newGame = require("./api/newGame");
 const runningGame = require("./api/renderGame");
+const popUp = require("./api/getStatischeBelegung")
 const turn = require("./api/ziehe");
 const loadGame = require("./api/ladeSpiel");
 const save = require("./api/saveGame");
@@ -26,6 +27,7 @@ app.use("/laden", loadGame);
 app.use("/render", runningGame);
 app.use("/ziehe", turn);
 app.use("/speichernSpiel", save);
+app.use("/alteBelegung", popUp)
 
 
 

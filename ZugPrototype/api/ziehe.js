@@ -22,6 +22,7 @@ router.get("/", (req, res) => {   //es geht mit "/", die vorige URL ist schon "d
                 res.write("Sie sind nicht am Zug");
                 res.end();
             }
+            process.env.anzeige = "anzeigen";
             res.redirect("/render");
         }
     });

@@ -7,6 +7,7 @@ var loadGameURL = "http://www.game-engineering.de:8080/rest/schach/spiel/admin/l
 
 router.get("/", (req, res) => {
     process.env.gameID = req.query.ladenSpielID;
+    process.env.anzeige = "anzeigen";
     reqURL = loadGameURL + process.env.gameID;
     request(reqURL, (error, response, body) => {
         if (error) {
