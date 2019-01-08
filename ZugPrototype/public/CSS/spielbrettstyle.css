@@ -55,6 +55,13 @@ h3{
 
 #Spieler{
     color: white;
+    padding: 20px;
+    padding-top : 27%;
+    padding-left: 50px;
+    display: inline-block;
+    float: right;
+    font-size: 35px;
+    font-family: "Early GameBoy"; 
 }
 
 input[type=text] {
