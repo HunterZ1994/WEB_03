@@ -53,6 +53,10 @@ h3{
 
 }
 
+#Spieler{
+    color: white;
+}
+
 input[type=text] {
     display: inline-block;
     text-align: center;

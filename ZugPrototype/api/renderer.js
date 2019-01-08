@@ -97,15 +97,20 @@ function addZugHistorie(JSONString, position, zugHistorie, alertMessage) {
     var json = JSON.parse(zugHistorie);
     var gameData = renderMarked(JSONString, position, alertMessage);
     var dom = new JSDOM(gameData);
-    if (String(zugHistorie).includes("Keine Zughistorie vorhanden!") || (json.length % 2) == 0) {
+    // if (!(String(zugHistorie).includes("Keine Zughistorie vorhanden!") || (json.length % 2) == 0)) {
+    //     dom.window.document.getElementsByTagName("table")[0].style.transform = "rotate(180deg)";
+    //     for(var i=0; i<dom.window.document.getElementsByTagName("th").length; i++){
+    //         dom.window.document.getElementsByTagName("th")[i].style.transform = "rotate(180deg)";
+    //     }
+    //     for(var i=0; i<dom.window.document.getElementsByTagName("td").length; i++){
+    //         dom.window.document.getElementsByTagName("td")[i].style.transform = "rotate(180deg)";
+    //     }
+    // }
+
+    if (!(String(zugHistorie).includes("Keine Zughistorie vorhanden!") || (json.length % 2) == 0)) {
+        dom.window.document.getElementById("Spieler").innerHTML = "Schwarz ist am Zug";
     }else{
-        dom.window.document.getElementsByTagName("table")[0].style.transform = "rotate(180deg)";
-        for(var i=0; i<dom.window.document.getElementsByTagName("th").length; i++){
-            dom.window.document.getElementsByTagName("th")[i].style.transform = "rotate(180deg)";
-        }
-        for(var i=0; i<dom.window.document.getElementsByTagName("td").length; i++){
-            dom.window.document.getElementsByTagName("td")[i].style.transform = "rotate(180deg)";
-        }
+        dom.window.document.getElementById("Spieler").innerHTML = "Weiss ist am Zug";
     }
     if (json.length > 1) {
         for (var i = 0; i < json.length; i++) {
