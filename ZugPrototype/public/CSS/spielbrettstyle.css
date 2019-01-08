@@ -1,9 +1,18 @@
+html {
+    background: url("/img/brettBild1.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
+}
+body{
+    display: inline-block; margin: 20px;
+}
 *{
     font-family:  arial;
 }
   table{
-    margin-left: auto;
-    margin-right: auto;
   border-spacing: 0px;
 
     }
@@ -17,82 +26,91 @@
 
   }
   th{
-background-color: #8d99a5;
+    background-color: #8d99a5;
     padding:5px;
-    border-color:#293133;
+    border-color:#20274A;
   }
 
 
   .schwarz{
-    background-color: #293133;
-    border:5px solid #293133;
+    background-color: #20274A;
+    border:5px solid #20274A;
   }
   .weiss{
     background-color: white;
     border:5px solid white;
   }
-form{
-  margin-left: 750px;
-  margin-top: 20px;
-}
 
-#ziehe{
-  font-family: "Early GameBoy";
-  color: white;
-  background-color: darkblue;
-}
-#save{
+h3{
     font-family: "Early GameBoy";
-    color: white;
-    background-color: darkblue;
 }
-#brett{
-  text-align: center;
 
-  margin-left: auto;
-  margin-right: auto;
 
+.brett{
+    text-align: center;
+    position: center;
+    float: left;
 
 }
 
-#zugHistorie{
-  color: white;
-  size: 20px;
-  margin-top: -42.5%;
-  margin-left: 5%;
+input[type=text] {
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    color: #20274A;
+    font-family: "Early GameBoy";
+    border: none;
+    width: 180px;
+    padding: 8px 16px;
+    margin: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    position: relative;
+
+
+}
+
+.historie {
+    display: inline-block;
+    margin: 20px;
+    float: left;
 }
 
 .button{
+    display: inline-block;
+    margin: 10px;
     border: none;
     color: white;
+    background-color: #20274A;
     padding: 8px 16px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     opacity: 0.6;
     transition: 0.3s;
-    display: inline-block;
     text-decoration: none;
     cursor: pointer;
     border-radius: 12px;
     font-family: "Early GameBoy";
-
 }
+
+.button_pos{
+    width: auto;
+    padding: auto;
+    margin: auto;
+}
+
 .button:hover {opacity: 1
 }
+
+
 #zugHistorie {
   background-color: #8d99a5;
   padding: 8px 16px;
   text-align: center;
   font-size: 16px;
-  margin: 4px 2px;
   opacity: 0.6;
   transition: 0.3s;
-border-radius: 12px;
-
-  color: white;
-  margin-top: -42.5%;
-  margin-left: 5%;
-  width: 200px;
+  color: #20274A;
   height: 700px;
   overflow-y: scroll;
 }

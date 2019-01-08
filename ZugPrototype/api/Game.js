@@ -13,12 +13,11 @@ const List = require("collections/list");
 var newGameURL = "http://www.game-engineering.de:8080/rest/schach/spiel/admin/neuesSpiel/";
 
 router.get("/", (req, res) => {
-    if (!process.env.gameID || process.env.gameID == undefined) {
-        process.env.gameID = req.query.neuesSpielID;
-    }
-    
+    process.env.gameID = req.query.neuesSpielID;
     requestURL = newGameURL + process.env.gameID;
+    
     request(requestURL, (error, response, body) => {
+        console.log("HALLLOOOO");
         if (error) {
             res.writeHead(200);
             res.write(String(error));

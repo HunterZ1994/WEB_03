@@ -7,52 +7,36 @@ html {
   text-align: center;
 }
 h1{
-  margin-left: 45%;
-  margin-right: 45%;
+margin-top: 25px;
   text-align: center;
-   background-color: #8d99a5; /
-  background-color: rgba(141, 153, 165, 0.63);
+  /* background-color: #8d99a5; */
+  background-color: rgba(32, 39, 74, 0.8);
   border: none;
   color: white;
-  padding: 8px 16px;
-  / opacity: 25%; /
+  padding: 20px 16px;
+  /* opacity: 25%; */
   text-align: center;
-  font-size: 25px;
-  margin: 4px 2px;
+  font-size: 50px;
+
   text-decoration: none;
   border-radius: 12px;
   font-family: "Early GameBoy";
 }
-/
-body {
-  right: auto;
-  left: auto;
-  margin: auto;
-}
-/
-/
-#settings {
-  margin-left: 45%;
-  margin-right: 45%;
-  margin-top: 15%;
-  margin-bottom: 15%;
-}
-
 
 .button{
   font-family: "Early GameBoy";
   display: inline-block;
   border-radius: 12px;
-  background-color: #241125;
+  background-color: #20274A;
   border: none;
   color: #FFFFFF;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   padding: 20px;
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 10px;
+  margin: auto;
 }
 .button span {
   cursor: pointer;
@@ -79,16 +63,18 @@ body {
 }
 
 input[type=text] {
+  text-align: center;
   background-color: white;
   border-radius: 12px;
-  color: #241125;
+  color: #20274A;
   font-family: "Early GameBoy";
   border: none;
-  width: 15%;
+  width: 170px;
   padding: 12px 20px ;
-  margin: auto;
+  margin-top: 50px;
   font-size: 20px;
   text-decoration: none;
   position: relative;
   display: inline-block;
+
 }
