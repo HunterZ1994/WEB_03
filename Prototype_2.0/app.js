@@ -1,15 +1,12 @@
 const express = require("express");
 const app = express();
-const morgan = require("morgan");
-const fs = require("fs");
 const path = require('path');
 
 //routing constants
 const init = require("./api/init/index");
 const newGame = require("./api/init/newGame");
 
-//logging
-app.use(morgan('common', {stream: fs.createWriteStream('./requests.log', {flags: 'a'})}));
+
 
 //Request routing
 app.use("/", init);
